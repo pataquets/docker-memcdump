@@ -10,3 +10,4 @@ RUN \
   rm -rf /var/lib/apt/lists/
 
 ENTRYPOINT [ "memcdump" ]
+CMD [ "--help" ]
