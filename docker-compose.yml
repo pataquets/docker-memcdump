@@ -1,0 +1,18 @@
+memcdump:
+#  build: .
+  image: pataquets/memcdump
+  command: [ "memcached", "--verbose" ]
+  links:
+    - memcached
+
+memcached:
+  image: memcached
+  ports:
+    - "11211:11211"
+
+memtier_benchmark:
+  image: redislabs/memtier_benchmark
+  entrypoint: ./memtier_benchmark
+  command: --protocol=memcache_text --server=memcached --port=11211 --generate-keys
+  links:
+    - memcached
